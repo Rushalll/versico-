@@ -95,21 +95,23 @@
     z-index: 50;
 }
 
-.about-container h4 {
-  margin-bottom: 64px;
-  color: var(--white);
+.about-container {
+    h4 {
+        margin-bottom: 64px;
+        color: var(--white);
+    }
 }
 
 .about-container {
-  max-width: 1680px;
-  width: 90%;
-  margin: 0 auto;
-  margin-top: 7%;
+    max-width: 1680px;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 7%;
+    div {
+        text-transform: lowercase !important;
+    }
 }
 
-.about-container div {
-  text-transform: lowercase !important;
-}
 .reveal-type {
     font-size: clamp(30px, 3.2vw, 50px);
     max-width: 1480px;
