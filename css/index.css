@@ -1112,3 +1112,8 @@ hr {
     padding-bottom: 12 !important;
 }
 
+/* Debugging layout issue */
+.reveal-type {
+    border: 1px dashed red;
+    background-color: rgba(255, 255, 255, 0.03);
+}
