@@ -1,0 +1,17 @@
+{
+  "name": "versico-website",
+  "version": "1.0.0",
+  "description": "Versico - Personalized Websites for Creators",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": ["versico", "creators", "websites", "personalized"],
+  "author": "Versico",
+  "license": "MIT",
+  "devDependencies": {
+    "vite": "^5.0.0"
+  }
+}
