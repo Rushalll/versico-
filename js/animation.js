@@ -226,10 +226,10 @@ function initSplitTextAnimation() {
             const bg = char.dataset.bgColor;
             const fg = char.dataset.fgColor;
             const text = new SplitType(char, {
-                types: 'words'
+                types: 'lines'
             });
 
-            tl.fromTo(text.chars, {
+            tl.fromTo(text.lines, {
                     color: bg,
                     opacity: 0.5
                 }, {
