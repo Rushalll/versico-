@@ -31,7 +31,7 @@
     position: absolute;
     bottom: 10%;
     left: 5%;
-    z-index: 3;
+    z-index: 4;
     width: 90%;
     max-width: 1680px;
     display: -webkit-box;
@@ -43,6 +43,11 @@
     -webkit-box-align: end;
     -ms-flex-align: end;
     align-items: flex-end;
+}
+
+#canvas3d {
+    pointer-events: auto;
+    z-index: 1 !important;
 }
 
 .hero-content h1 {

@@ -64,7 +64,8 @@
 
         <section class="hero" id="hero" data-scroll="" data-scroll-speed="-2">
 
-
+            <!-- Spline 3D Scene -->
+            <canvas id="canvas3d" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;"></canvas>
 
             <nav class="nav-bar">
 
@@ -136,19 +137,7 @@
             <main class="hero-content">
                 <div class="hero-h1-container">
 
-                    <div class="hero-h1-box">
-                        <h1>Organize </h1>
-                        <h1>Better</h1>
-                    </div>
-
-                    <div class="hero-h1-box">
-                        <h1> With</h1>
-                        <h1> Calm</h1>
-                        <h1> Systems</h1>
-                    </div>
-
-
-
+                    <!-- Hero text removed to showcase Spline scene -->
 
                 </div>
 
@@ -156,8 +145,6 @@
                 <a href="mailto:dhruv@versico.in" class="primary-button"> Let's Connect</a>
             </main>
 
-
-            <img src="images/hero-2xl.webp" alt="hero-image">
 
             <div class="black-filter"></div>
 
@@ -701,6 +688,7 @@
     <script src="js/gsap.min.js"></script>
     <script src="js/ScrollTrigger.min.js"></script>
 
+    <script type="module" src="js/spline-loader.js"></script>
     <script type="module" src="js/index.js"></script>
     <script type="module" src="js/animation.js"></script>
 
