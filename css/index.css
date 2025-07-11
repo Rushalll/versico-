@@ -1102,9 +1102,4 @@ hr {
     margin-bottom: 12 !important;
     padding-bottom: 12 !important;
 }
-.reveal-type,
-.small-screen-about {
-  word-break: normal;
-  overflow-wrap: normal;
-  hyphens: none;
-}
+
