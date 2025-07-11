@@ -116,13 +116,22 @@
     font-size: clamp(30px, 3.2vw, 50px);
     max-width: 1480px;
     line-height: 1.4;
+    word-break: keep-all;
+    overflow-wrap: normal;
+    white-space: normal;
+    hyphens: none;
 }
 
 .small-screen-about {
     display: none;
     font-size: clamp(30px, 3.2vw, 50px);
     line-height: 1.4;
+    word-break: keep-all;
+    overflow-wrap: normal;
+    white-space: normal;
+    hyphens: none;
 }
+
 
 @media (max-width: 1400px) {
     .about-container {
