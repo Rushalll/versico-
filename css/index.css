@@ -1102,15 +1102,4 @@ hr {
     margin-bottom: 12 !important;
     padding-bottom: 12 !important;
 }
-.reveal-type,
-.small-screen-about {
-  word-break: keep-all;
-  overflow-wrap: normal;
-  hyphens: none;
-  white-space: normal;
-  line-height: 1.5;
-  max-width: 100%;
-  word-spacing: 0.04em;
-  font-feature-settings: "liga" on;
-}
 
