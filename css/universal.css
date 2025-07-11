@@ -698,9 +698,3 @@ footer {
     color: white;
     visibility: hidden;
 }
-.reveal-type,
-.small-screen-about {
-  word-break: normal;
-  overflow-wrap: normal;
-  hyphens: none;
-}
