@@ -57,8 +57,9 @@
 }
 
 .hero-h1-box h1 {
-    font-family: "General Sans", sans-serif;
-    font-weight: 500; /* or 700 if you want bolder */
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-weight: 400; /* This font only has regular weight */
 }
 
 
