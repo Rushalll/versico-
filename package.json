@@ -8,18 +8,10 @@
     "build": "vite build",
     "preview": "vite preview"
   },
-  "keywords": [
-    "versico",
-    "creators",
-    "websites",
-    "personalized"
-  ],
+  "keywords": ["versico", "creators", "websites", "personalized"],
   "author": "Versico",
   "license": "MIT",
   "devDependencies": {
     "vite": "^5.0.0"
-  },
-  "dependencies": {
-    "@splinetool/runtime": "^1.10.26"
   }
 }
