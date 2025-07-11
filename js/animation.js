@@ -16,10 +16,16 @@ const closeButton = document.querySelector('.close-btn');
 
 function showNav() {
     navContainer.style.display = 'block';
+    menuButton.setAttribute('aria-expanded', 'true');
+    // Focus management
+    const firstFocusable = navContainer.querySelector('a, button');
+    if (firstFocusable) firstFocusable.focus();
 }
 
 function hideNav() {
     navContainer.style.display = 'none';
+    menuButton.setAttribute('aria-expanded', 'false');
+    menuButton.focus(); // Return focus to menu button
 }
 
 menuButton.addEventListener('click', showNav);
@@ -32,6 +38,12 @@ document.addEventListener('click', (event) => {
     }
 });
 
+// Keyboard navigation for mobile menu
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && navContainer.style.display === 'block') {
+        hideNav();
+    }
+});
 
 
 function circleChaptaKaro() {
@@ -93,17 +105,6 @@ function circleMouseFollower(xscale, yscale) {
 // Initialize the custom cursor behavior
 circleChaptaKaro();
 
-
-
-
-
-
-
-
-
-
-
-
 // Check if the animation has already been played in the current tab
 if (!sessionStorage.getItem('preloaderPlayed')) {
     const tl = gsap.timeline();
@@ -163,9 +164,6 @@ if (!sessionStorage.getItem('preloaderPlayed')) {
     document.querySelector(".scroller").style.overflow = "auto";
 }
 
-
-
-
 // Initialize Locomotive Scroll and GSAP ScrollTrigger
 function initScrollAndTrigger() {
     gsap.registerPlugin(ScrollTrigger);
@@ -173,7 +171,9 @@ function initScrollAndTrigger() {
     // Locomotive Scroll instance
     const locoScroll = new LocomotiveScroll({
         el: document.querySelector(".scroller"),
-        smooth: true
+        smooth: true,
+        multiplier: 1,
+        class: 'is-reveal'
     });
 
     // Update ScrollTrigger when Locomotive Scroll updates
@@ -204,8 +204,6 @@ function initScrollAndTrigger() {
     return locoScroll;
 }
 
-
-
 // Split Text Animation with Opacity
 function initSplitTextAnimation() {
     const splitTypes = document.querySelectorAll('.reveal-type');
@@ -219,6 +217,12 @@ function initSplitTextAnimation() {
                 scrub: 1,
                 scroller: ".scroller",
                 // markers: true,
+                onUpdate: self => {
+                    // Optimize performance during scroll
+                    if (self.progress > 0.9) {
+                        splitTypes.forEach(char => char.style.willChange = 'auto');
+                    }
+                }
             }
         });
 
@@ -245,9 +249,6 @@ function initSplitTextAnimation() {
         });
     }
 }
-
-
-
 
 function initMarquee(locoScroll) {
     const marqueeWrapper = document.querySelector('.marquee-wrapper');
@@ -305,6 +306,7 @@ function initMarquee(locoScroll) {
                 duration: 20, // Adjust speed as needed
                 ease: 'none', // Use 'none' for perfectly linear movement
                 repeat: -1,
+                paused: false,
                 onRepeat: function() {
                     // Instead of resetting position, shift by content width
                     const currentX = gsap.getProperty(marquee, "x");
@@ -314,6 +316,16 @@ function initMarquee(locoScroll) {
                 }
             });
         };
+
+        // Pause animation when not in view for performance
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (currentAnimation) {
+                    entry.isIntersecting ? currentAnimation.play() : currentAnimation.pause();
+                }
+            });
+        });
+        observer.observe(marqueeWrapper);
 
         // Initialize
         startContinuousMarquee();
@@ -337,16 +349,6 @@ function initMarquee(locoScroll) {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
 // Project Dimming Effects
 function initProjectDimming() {
     const projects = document.querySelectorAll('.project');
@@ -361,8 +363,6 @@ function initProjectDimming() {
         });
     });
 }
-
-
 
 // Personalized Package Mouse Effects
 function initPersonalizedPackage() {
@@ -388,8 +388,6 @@ function initPersonalizedPackage() {
     }
 }
 
-
-
 // Load FAQ Items
 function loadFaqs(category) {
     const faqContainer = document.getElementById('faq-container');
@@ -406,6 +404,9 @@ function loadFaqs(category) {
         const faqItem = document.createElement('div');
         faqItem.classList.add('faq-item');
         faqItem.setAttribute('data-category', faq.category);
+        faqItem.setAttribute('role', 'button');
+        faqItem.setAttribute('aria-expanded', 'false');
+        faqItem.setAttribute('tabindex', '0');
 
         // Create the wrapper div for the question and toggle button
         const faqHeader = document.createElement('div');
@@ -448,6 +449,20 @@ function loadFaqs(category) {
 
         // Add event listener to the header
         faqHeader.addEventListener('click', () => {
+            toggleFaq(faqHeader, currentAnswer, toggleBtn);
+        });
+        
+        // Keyboard support for FAQ items
+        faqHeader.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                toggleFaq(faqHeader, currentAnswer, toggleBtn);
+            }
+        });
+    });
+}
+
+function toggleFaq(faqHeader, currentAnswer, toggleBtn) {
             const currentAnswer = faqHeader.nextElementSibling;
             const currentToggleBtn = toggleBtn;
 
@@ -461,28 +476,31 @@ function loadFaqs(category) {
             if (currentAnswer.style.maxHeight === '0px' || !currentAnswer.style.maxHeight) {
                 currentAnswer.style.maxHeight = currentAnswer.scrollHeight + 'px'; // Expand
                 currentToggleBtn.textContent = '-';
+                faqHeader.parentElement.setAttribute('aria-expanded', 'true');
             } else {
                 currentAnswer.style.maxHeight = '0px'; // Collapse
                 currentToggleBtn.textContent = '+';
+                faqHeader.parentElement.setAttribute('aria-expanded', 'false');
             }
-        });
-    });
 }
 
 // Filter Functionality
 document.querySelectorAll('.filter-btn').forEach(button => {
     button.addEventListener('click', () => {
-        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.classList.remove('active');
+            btn.setAttribute('aria-selected', 'false');
+        });
         button.classList.add('active');
+        button.setAttribute('aria-selected', 'true');
         loadFaqs(button.getAttribute('data-category'));
     });
 });
 
 // Initial Load
 loadFaqs('general'); // Changed from 'all' to 'general'
-// Detect if the device has a mouse (not a touch screen)
-// Detect if the device has a mouse (not a touch screen)
 
+// Detect if the device has a mouse (not a touch screen)
 const hasMouse = window.matchMedia("(pointer: fine)").matches;
 
 // Mouse-based interaction (only for devices with a mouse)
@@ -518,12 +536,16 @@ if (hasMouse) {
                 diffrot = dets.clientX - rotate;
                 rotate = dets.clientX;
 
+                // Use requestAnimationFrame for smoother animation
+                requestAnimationFrame(() => {
                 gsap.to(image, {
                     opacity: 1,
                     ease: "power3.out",
                     top: diff,
                     left: dets.clientX,
                     rotate: gsap.utils.clamp(-20, 20, diffrot * 0.5),
+                    duration: 0.1
+                });
                 });
             }
         });
@@ -712,8 +734,73 @@ else {
     });
 }
 
+// Enhanced form validation
+function initFormValidation() {
+    const form = document.querySelector('.contact-form');
+    const inputs = form.querySelectorAll('input, textarea');
+    
+    inputs.forEach(input => {
+        input.addEventListener('blur', validateField);
+        input.addEventListener('input', clearErrors);
+    });
+    
+    form.addEventListener('submit', handleFormSubmit);
+}
 
-// Modify your existing initialization to pass Locomotive Scroll
+function validateField(event) {
+    const field = event.target;
+    const value = field.value.trim();
+    
+    // Remove existing error styling
+    field.style.borderBottomColor = '';
+    
+    if (field.hasAttribute('required') && !value) {
+        showFieldError(field, 'This field is required');
+        return false;
+    }
+    
+    if (field.type === 'email' && value && !isValidEmail(value)) {
+        showFieldError(field, 'Please enter a valid email address');
+        return false;
+    }
+    
+    return true;
+}
+
+function showFieldError(field, message) {
+    field.style.borderBottomColor = '#ff6b6b';
+    // You could add error message display here
+}
+
+function clearErrors(event) {
+    const field = event.target;
+    field.style.borderBottomColor = '';
+}
+
+function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function handleFormSubmit(event) {
+    const form = event.target;
+    const inputs = form.querySelectorAll('input[required], textarea[required]');
+    let isValid = true;
+    
+    inputs.forEach(input => {
+        if (!validateField({ target: input })) {
+            isValid = false;
+        }
+    });
+    
+    if (!isValid) {
+        event.preventDefault();
+        // Focus first invalid field
+        const firstInvalid = form.querySelector('input[style*="border-bottom-color: rgb(255, 107, 107)"], textarea[style*="border-bottom-color: rgb(255, 107, 107)"]');
+        if (firstInvalid) firstInvalid.focus();
+    }
+}
+
+// Initialize all functionality
 document.addEventListener('DOMContentLoaded', () => {
     const locoScroll = initScrollAndTrigger();
     initMarquee(locoScroll);
@@ -722,6 +809,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initPersonalizedPackage();
     initFooterAnimation();
     initPricingAnimation();
+    initFormValidation();
 });
 
 // Footer Animation
