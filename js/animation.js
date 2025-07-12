@@ -713,6 +713,362 @@ else {
 }
 
 
+// New scroll animations for various sections
+function initScrollAnimations() {
+    // Hero section animations
+    gsap.from(".nav-bar", {
+        duration: 1.2,
+        y: -100,
+        opacity: 0,
+        ease: "power3.out",
+        delay: 2.5 // After preloader
+    });
+
+    gsap.from(".hero-content .primary-button", {
+        duration: 1,
+        y: 50,
+        opacity: 0,
+        ease: "back.out(1.7)",
+        delay: 3
+    });
+
+    // About section animation
+    gsap.from(".about-container h4", {
+        scrollTrigger: {
+            trigger: ".about",
+            start: "top 80%",
+            scroller: ".scroller"
+        },
+        duration: 0.8,
+        y: 50,
+        opacity: 0,
+        ease: "power2.out"
+    });
+
+    // Service section animations
+    gsap.from(".service-container h4", {
+        scrollTrigger: {
+            trigger: ".service",
+            start: "top 80%",
+            scroller: ".scroller"
+        },
+        duration: 0.8,
+        y: 50,
+        opacity: 0,
+        ease: "power2.out"
+    });
+
+    gsap.from(".service-card", {
+        scrollTrigger: {
+            trigger: ".service",
+            start: "top 60%",
+            scroller: ".scroller"
+        },
+        duration: 1,
+        y: 100,
+        opacity: 0,
+        stagger: 0.2,
+        ease: "power3.out"
+    });
+
+    // Approach section animation
+    gsap.from(".approach-content p", {
+        scrollTrigger: {
+            trigger: ".approach",
+            start: "top 70%",
+            scroller: ".scroller"
+        },
+        duration: 1,
+        y: 80,
+        opacity: 0,
+        stagger: 0.3,
+        ease: "power2.out"
+    });
+
+    // Work section animations
+    gsap.from(".work h4", {
+        scrollTrigger: {
+            trigger: ".work",
+            start: "top 80%",
+            scroller: ".scroller"
+        },
+        duration: 0.8,
+        y: 50,
+        opacity: 0,
+        ease: "power2.out"
+    });
+
+    // Project animations
+    gsap.from(".project", {
+        scrollTrigger: {
+            trigger: ".project-container",
+            start: "top 70%",
+            scroller: ".scroller"
+        },
+        duration: 1.2,
+        y: 120,
+        opacity: 0,
+        stagger: 0.15,
+        ease: "power3.out"
+    });
+
+    // Neural Blackbook section animation
+    gsap.from(".neural-blackbook-image", {
+        scrollTrigger: {
+            trigger: ".neural-blackbook",
+            start: "top 70%",
+            scroller: ".scroller"
+        },
+        duration: 1.2,
+        x: -100,
+        opacity: 0,
+        ease: "power3.out"
+    });
+
+    gsap.from(".neural-blackbook-content h1", {
+        scrollTrigger: {
+            trigger: ".neural-blackbook",
+            start: "top 70%",
+            scroller: ".scroller"
+        },
+        duration: 1,
+        y: 80,
+        opacity: 0,
+        ease: "power3.out",
+        delay: 0.2
+    });
+
+    gsap.from(".neural-blackbook-content p", {
+        scrollTrigger: {
+            trigger: ".neural-blackbook",
+            start: "top 70%",
+            scroller: ".scroller"
+        },
+        duration: 0.8,
+        y: 50,
+        opacity: 0,
+        ease: "power2.out",
+        delay: 0.4
+    });
+
+    gsap.from(".neural-blackbook-price", {
+        scrollTrigger: {
+            trigger: ".neural-blackbook",
+            start: "top 70%",
+            scroller: ".scroller"
+        },
+        duration: 0.8,
+        y: 30,
+        opacity: 0,
+        ease: "power2.out",
+        delay: 0.6
+    });
+
+    gsap.from(".neural-blackbook-btn", {
+        scrollTrigger: {
+            trigger: ".neural-blackbook",
+            start: "top 70%",
+            scroller: ".scroller"
+        },
+        duration: 0.8,
+        y: 30,
+        opacity: 0,
+        scale: 0.9,
+        ease: "back.out(1.7)",
+        delay: 0.8
+    });
+
+    // FAQ section animations
+    gsap.from(".faq-head h1", {
+        scrollTrigger: {
+            trigger: ".faq-section",
+            start: "top 80%",
+            scroller: ".scroller"
+        },
+        duration: 1,
+        y: 80,
+        opacity: 0,
+        ease: "power3.out"
+    });
+
+    gsap.from(".filter-btn", {
+        scrollTrigger: {
+            trigger: ".faq-filter-container",
+            start: "top 80%",
+            scroller: ".scroller"
+        },
+        duration: 0.6,
+        y: 30,
+        opacity: 0,
+        stagger: 0.1,
+        ease: "power2.out"
+    });
+
+    // Contact form animations
+    gsap.from(".contact-title", {
+        scrollTrigger: {
+            trigger: ".contact-section",
+            start: "top 80%",
+            scroller: ".scroller"
+        },
+        duration: 1.2,
+        x: -100,
+        opacity: 0,
+        ease: "power3.out"
+    });
+
+    gsap.from(".contact-decoration", {
+        scrollTrigger: {
+            trigger: ".contact-section",
+            start: "top 80%",
+            scroller: ".scroller"
+        },
+        duration: 1,
+        scale: 0,
+        opacity: 0,
+        ease: "back.out(1.7)",
+        delay: 0.3
+    });
+
+    gsap.from(".form-group", {
+        scrollTrigger: {
+            trigger: ".contact-form",
+            start: "top 80%",
+            scroller: ".scroller"
+        },
+        duration: 0.8,
+        y: 50,
+        opacity: 0,
+        stagger: 0.1,
+        ease: "power2.out",
+        delay: 0.2
+    });
+
+    gsap.from(".submit-btn", {
+        scrollTrigger: {
+            trigger: ".contact-form",
+            start: "top 80%",
+            scroller: ".scroller"
+        },
+        duration: 0.8,
+        scale: 0,
+        opacity: 0,
+        ease: "back.out(1.7)",
+        delay: 0.6
+    });
+
+    // Footer info animation
+    gsap.from(".footer-info", {
+        scrollTrigger: {
+            trigger: ".footer-bottom",
+            start: "top 90%",
+            scroller: ".scroller"
+        },
+        duration: 0.8,
+        y: 30,
+        opacity: 0,
+        ease: "power2.out"
+    });
+}
+
+// Enhanced hover animations for buttons
+function initButtonAnimations() {
+    // Primary button hover effects
+    document.querySelectorAll('.primary-button').forEach(button => {
+        button.addEventListener('mouseenter', () => {
+            gsap.to(button, {
+                duration: 0.3,
+                scale: 1.05,
+                y: -2,
+                ease: "power2.out"
+            });
+        });
+
+        button.addEventListener('mouseleave', () => {
+            gsap.to(button, {
+                duration: 0.3,
+                scale: 1,
+                y: 0,
+                ease: "power2.out"
+            });
+        });
+    });
+
+    // Neural Blackbook button special animation
+    const neuralBtn = document.querySelector('.neural-blackbook-btn');
+    if (neuralBtn) {
+        neuralBtn.addEventListener('mouseenter', () => {
+            gsap.to(neuralBtn, {
+                duration: 0.4,
+                scale: 1.08,
+                y: -3,
+                boxShadow: "0 10px 30px rgba(255,255,255,0.2)",
+                ease: "back.out(1.7)"
+            });
+        });
+
+        neuralBtn.addEventListener('mouseleave', () => {
+            gsap.to(neuralBtn, {
+                duration: 0.4,
+                scale: 1,
+                y: 0,
+                boxShadow: "0 0 0 rgba(255,255,255,0)",
+                ease: "power2.out"
+            });
+        });
+    }
+
+    // Submit button pulse animation
+    const submitBtn = document.querySelector('.submit-btn');
+    if (submitBtn) {
+        submitBtn.addEventListener('mouseenter', () => {
+            gsap.to(submitBtn, {
+                duration: 0.3,
+                scale: 1.1,
+                rotation: 45,
+                ease: "back.out(1.7)"
+            });
+        });
+
+        submitBtn.addEventListener('mouseleave', () => {
+            gsap.to(submitBtn, {
+                duration: 0.3,
+                scale: 1,
+                rotation: 0,
+                ease: "power2.out"
+            });
+        });
+    }
+}
+
+// Parallax effect for hero image
+function initParallaxEffects() {
+    gsap.to(".hero img", {
+        scrollTrigger: {
+            trigger: ".hero",
+            start: "top top",
+            end: "bottom top",
+            scrub: 1,
+            scroller: ".scroller"
+        },
+        y: "30%",
+        ease: "none"
+    });
+
+    // Parallax for Neural Blackbook image
+    gsap.to(".neural-blackbook-image img", {
+        scrollTrigger: {
+            trigger: ".neural-blackbook",
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1,
+            scroller: ".scroller"
+        },
+        y: "-20%",
+        ease: "none"
+    });
+}
+
 // Modify your existing initialization to pass Locomotive Scroll
 document.addEventListener('DOMContentLoaded', () => {
     const locoScroll = initScrollAndTrigger();
@@ -722,6 +1078,9 @@ document.addEventListener('DOMContentLoaded', () => {
     initPersonalizedPackage();
     initFooterAnimation();
     initPricingAnimation();
+    initScrollAnimations();
+    initButtonAnimations();
+    initParallaxEffects();
 });
 
 // Footer Animation
